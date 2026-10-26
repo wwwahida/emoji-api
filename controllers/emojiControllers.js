@@ -20,7 +20,20 @@ const show = async (req, res) => {
     }
 }
 
+const update = async (req, res) => {
+    const name = req.params.name.toLowerCase()
+
+    try {
+        const emoji = await Emoji.show(name)
+        const updatedEmoji = await emoji.update(newEmoji)
+        res.status(200).send(updatedEmoji)
+    } catch (error) {
+        res.status(404).send({ error: "emoji not found" })
+    }
+}
+
 module.exports = {
     index,
-    show
+    show,
+    update
 }

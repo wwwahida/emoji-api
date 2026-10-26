@@ -21,6 +21,21 @@ class Emoji {
             throw new Error('emoji not found')
         }
     }
+
+    update(newEmoji) {
+        const updateEmoji = emojis.find(emoji => emoji.name.toLowerCase() === this.name.toLowerCase())
+        if (updateEmoji) {
+            if (newEmoji.name) updateEmoji.name = newEmoji.name
+            if (newEmoji.category) updateEmoji.category = newEmoji.category
+            if (newEmoji.group) updateEmoji.group = newEmoji.group
+            if (newEmoji.htmlCode) updateEmoji.htmlCode = newEmoji.htmlCode
+            if (newEmoji.unicode) updateEmoji.unicode = newEmoji.unicode
+
+            return new Emoji(updateEmoji)
+        } else {
+            throw ('emoji not found')
+        }
+    }
 }
 
 module.exports = Emoji

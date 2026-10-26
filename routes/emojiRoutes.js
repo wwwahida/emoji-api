@@ -4,5 +4,6 @@ const emojis = require('../controllers/emojiControllers')
 
 router.get('/', emojis.index)
 router.get('/:name', emojis.show)
+router.patch('/:name', emojis.update)
 
 module.exports = router
