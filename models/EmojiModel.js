@@ -51,6 +51,15 @@ class Emoji {
             return new Emoji(newEmoji)
         }
     }
+
+    destroy() {
+        const index = emojis.indexOf(emoji => emoji.name.toLowerCase() === this.name.toLowerCase())
+        if (index) {
+            emojis.splice(index, 1)
+        } else {
+            throw 'emoji not found'
+        }
+    }
 }
 
 module.exports = Emoji

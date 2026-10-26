@@ -41,9 +41,22 @@ const create = async (req, res) => {
     }
 }
 
+const destroy = async (req, res) => {
+    const name = req.params.name.toLowerCase()
+
+    try {
+        const emoji = await Emoji.show(name)
+        await emoji.destroy()
+        res.status(204).send({ message: "emoji deleted" })
+    } catch (error) {
+        res.status(404).send({ error: "emoji not found" })
+    }
+}
+
 module.exports = {
     index,
     show,
     update,
-    create
+    create,
+    destroy
 }
