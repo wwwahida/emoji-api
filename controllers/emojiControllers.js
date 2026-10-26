@@ -9,6 +9,18 @@ const index = async (req, res) => {
     }
 }
 
+const show = async (req, res) => {
+    const name = req.params.name.toLowerCase()
+
+    try {
+        const emoji = await Emoji.show(name)
+        res.status(200).send(emoji)
+    } catch (error) {
+        res.status(404).send({ error: "emoji not found" })
+    }
+}
+
 module.exports = {
-    index
+    index,
+    show
 }
