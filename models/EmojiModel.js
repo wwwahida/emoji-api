@@ -36,6 +36,21 @@ class Emoji {
             throw ('emoji not found')
         }
     }
+
+    static create(emojiData) {
+        const newEmoji = emojiData
+        if (!emojiData.name) {
+            throw 'name is required'
+        }
+
+        const existingEmoji = emojis.find(emoji => emoji.name.toLowerCase() === newEmoji.name.toLowerCase())
+        if (existingEmoji) {
+            throw 'emoji already exists'
+        } else {
+            emojis.push(newEmoji)
+            return new Emoji(newEmoji)
+        }
+    }
 }
 
 module.exports = Emoji

@@ -32,8 +32,18 @@ const update = async (req, res) => {
     }
 }
 
+const create = async (req, res) => {
+    try {
+        const newEmoji = await Emoji.create(req.body)
+        res.status(201).send(newEmoji)
+    } catch (error) {
+        res.status(409).send({ error: "conflict" })
+    }
+}
+
 module.exports = {
     index,
     show,
-    update
+    update,
+    create
 }
